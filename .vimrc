@@ -188,6 +188,7 @@ Plug 'Shougo/echodoc.vim'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'rhysd/clever-f.vim'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'Chiel92/vim-autoformat'
 
 call plug#end()            
 
@@ -425,4 +426,8 @@ let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 插件vim-autoformat配置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:autoformat_verbosemode=1 "开启详细模式便于查错
+au BufWrite * :Autoformat
