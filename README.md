@@ -431,6 +431,50 @@ Windows端安装fonts目录下的字体,安装完毕后xshell下安装字体即�
 
   参考插件介绍中YCM部分
 
+- YCM提示`no member named 'cin' in namespace 'std'`
+
+  执行命令`echo | clang -E -v -x c++ -`，将默认查找头文件顺序填入.ycm_extra_conf.py即可
+
+  输出举例
+
+  ```shell
+  #include "..." search starts here:
+  #include <...> search starts here:
+   /usr/bin/../lib/gcc/x86_64-linux-gnu/8/../../../../include/c++/8
+   /usr/bin/../lib/gcc/x86_64-linux-gnu/8/../../../../include/x86_64-linux-gnu/c++/8
+   /usr/bin/../lib/gcc/x86_64-linux-gnu/8/../../../../include/c++/8/backward
+   /usr/include/clang/8.0.0/include
+   /usr/local/include
+   /usr/include/x86_64-linux-gnu
+   /usr/include
+  ```
+
+  .ycm_extra_conf.py响应配置如下
+
+  ```python
+  flags = [ 
+  '-Wall',
+  '-Wextra',
+  '-Werror',
+  '-fexceptions',
+  '-DNDEBUG',
+  '-stdlib=libc++'
+  '-std=c++11',
+  '-x',
+  'c++',
+  '-isystem','/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/c++/v1',
+  '-isystem','/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include',
+  '-isystem','/usr/include/c++/8',
+  '-isystem','/usr/include/x86_64-linux-gnu/c++/',
+  '-isystem','/usr/include/c++/8/backward',
+  '-isystem','/usr/include/clang/8.0.0/include',
+  '-isystem','/usr/local/include',
+  '-isystem','/usr/include/x86_64-linux-gnu',
+  '-isystem','/usr/include',
+  '-isystem','/usr/include/linux',
+  ]
+  ```
+
 -  以上没有我遇到的问题怎么办？
 
 您可以通过上网找解决方法，或提[Issues](https://github.com/MicoStrong/sharpvim/issues)，也可以通过加QQ1120943127、发邮件方式1120943127@qq.com一起讨论解决方法。
